@@ -14,6 +14,8 @@ namespace MiniGame2020
 
         private Ctverecek _ctverecek;
 
+        private Ctverecek2 _ctverecek2;
+
         public MiniGame()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -37,10 +39,18 @@ namespace MiniGame2020
 
             _ctverecek = new Ctverecek(
                 50, 5,
-                new Vector2((_sirkaOkna - 50) / 2, (_vyskaOkna - 50) / 2),
+                new Vector2((_sirkaOkna - 50) / 2 + 25, (_vyskaOkna - 50) / 2),
                 new SmeroveOvladani(Keys.Left, Keys.Right, Keys.Up, Keys.Down),
                 new Rectangle(0, 0, _sirkaOkna, _vyskaOkna),
                 Color.Black, GraphicsDevice
+            );
+
+            _ctverecek2 = new Ctverecek2(
+                50, 5,
+                new Vector2((_sirkaOkna - 50) / 2 - 25, (_vyskaOkna - 50) / 2),
+                new OvladaniDucha(Keys.Left, Keys.Right, Keys.Up, Keys.Down),
+                new Rectangle(0, 0, _sirkaOkna, _vyskaOkna),
+                Color.Gray, GraphicsDevice
             );
         }
 
@@ -52,6 +62,7 @@ namespace MiniGame2020
                 Exit();
 
             _ctverecek.Aktualizovat(klavesnice);
+            _ctverecek2.Aktualizovat(klavesnice);
 
             base.Update(gameTime);
         }
@@ -61,6 +72,7 @@ namespace MiniGame2020
             GraphicsDevice.Clear(Color.White);
 
             _spriteBatch.Begin();
+            _ctverecek2.Vykreslit(_spriteBatch);
             _ctverecek.Vykreslit(_spriteBatch);
             _spriteBatch.End();
 

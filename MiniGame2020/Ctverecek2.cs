@@ -5,7 +5,7 @@ using System.Diagnostics;
 
 namespace MiniGame2020
 {
-    class Ctverecek
+    class Ctverecek2
     {
         private GraphicsDevice _zobrazovac { get; set; }
 
@@ -17,15 +17,15 @@ namespace MiniGame2020
         private Vector2 _pozice { get; set; }
         private Texture2D _textura { get; set; }
 
-        private SmeroveOvladani _ovladaniPohybu { get; set; }
+        private OvladaniDucha _ovladaniPohybu2 { get; set; }
         private Rectangle _omezeniPohybu { get; set; }
 
-        public Ctverecek(int velikost, int rychlost, Vector2 pozice, SmeroveOvladani ovladaniPohybu, Rectangle omezeniPohybu, Color barva, GraphicsDevice zobrazovac)
+        public Ctverecek2(int velikost, int rychlost, Vector2 pozice, OvladaniDucha ovladaniPohybu, Rectangle omezeniPohybu, Color barva, GraphicsDevice zobrazovac)
         {
             _velikost = velikost;
             _rychlost = rychlost;
 
-            _ovladaniPohybu = ovladaniPohybu;
+            _ovladaniPohybu2 = ovladaniPohybu;
             _omezeniPohybu = omezeniPohybu;
 
             _barva = barva;
@@ -51,19 +51,19 @@ namespace MiniGame2020
         {
             Vector2 smerPohybu = Vector2.Zero;
 
-            if (klavesnice.IsKeyDown(_ovladaniPohybu.Doprava))
+            if (klavesnice.IsKeyDown(_ovladaniPohybu2.Doprava))
                 smerPohybu += Vector2.UnitX;
-            if (klavesnice.IsKeyDown(_ovladaniPohybu.Doleva))
+            if (klavesnice.IsKeyDown(_ovladaniPohybu2.Doleva))
                 smerPohybu -= Vector2.UnitX;
-            if (klavesnice.IsKeyDown(_ovladaniPohybu.Nahoru))
+            if (klavesnice.IsKeyDown(_ovladaniPohybu2.Nahoru))
                 smerPohybu -= Vector2.UnitY;
-            if (klavesnice.IsKeyDown(_ovladaniPohybu.Dolu))
+            if (klavesnice.IsKeyDown(_ovladaniPohybu2.Dolu))
                 smerPohybu += Vector2.UnitY;
 
             if (smerPohybu != Vector2.Zero)
                 _pozice += _rychlost * Vector2.Normalize(smerPohybu);
 
-            _pozice = Vector2.Clamp(_pozice, new Vector2(_omezeniPohybu.Left + 400 , _omezeniPohybu.Top), new Vector2(_omezeniPohybu.Right - _velikost, _omezeniPohybu.Bottom - _velikost));
+            _pozice = Vector2.Clamp(_pozice, new Vector2(_omezeniPohybu.Left, _omezeniPohybu.Top), new Vector2(_omezeniPohybu.Right - 450, _omezeniPohybu.Bottom - _velikost));
         }
 
         public void Aktualizovat(KeyboardState klavesnice)
