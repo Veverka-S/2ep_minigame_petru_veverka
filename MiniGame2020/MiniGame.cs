@@ -9,6 +9,9 @@ namespace MiniGame2020
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
+        private int _sirkaOkna = 800;
+        private int _vyskaOkna = 600;
+
         public MiniGame()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -19,7 +22,9 @@ namespace MiniGame2020
 
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            _graphics.PreferredBackBufferWidth = _sirkaOkna;
+            _graphics.PreferredBackBufferHeight = _vyskaOkna;
+            _graphics.ApplyChanges();
 
             base.Initialize();
         }
