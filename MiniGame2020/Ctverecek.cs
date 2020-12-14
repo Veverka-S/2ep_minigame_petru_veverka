@@ -75,5 +75,6 @@ namespace MiniGame2020
         {
             _vykreslovac.Draw(_textura, _pozice, _barva);
         }
+
     }
 }
