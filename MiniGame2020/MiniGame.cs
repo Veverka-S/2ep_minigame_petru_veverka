@@ -12,11 +12,13 @@ namespace MiniGame2020
         private int _sirkaOkna = 800;
         private int _vyskaOkna = 600;
 
+        private Ctverecek _ctverecek;
+
         public MiniGame()
         {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            Window.Title = "Mini Game";
+            Window.Title = "MiniGame";
             IsMouseVisible = true;
         }
 
@@ -33,15 +35,23 @@ namespace MiniGame2020
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
+            _ctverecek = new Ctverecek(
+                50, 5,
+                new Vector2((_sirkaOkna - 50) / 2, (_vyskaOkna - 50) / 2),
+                new SmeroveOvladani(Keys.Left, Keys.Right, Keys.Up, Keys.Down),
+                new Rectangle(0, 0, _sirkaOkna, _vyskaOkna),
+                Color.Black, GraphicsDevice
+            );
         }
 
         protected override void Update(GameTime gameTime)
         {
-            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
+            KeyboardState klavesnice = Keyboard.GetState();
+
+            if (klavesnice.IsKeyDown(Keys.Escape))
                 Exit();
 
-            // TODO: Add your update logic here
+            _ctverecek.Aktualizovat(klavesnice);
 
             base.Update(gameTime);
         }
@@ -51,7 +61,7 @@ namespace MiniGame2020
             GraphicsDevice.Clear(Color.White);
 
             _spriteBatch.Begin();
-            // TODO: Add your drawing code here
+            _ctverecek.Vykreslit(_spriteBatch);
             _spriteBatch.End();
 
             base.Draw(gameTime);
