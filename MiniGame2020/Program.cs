@@ -1,14 +1,10 @@
-﻿using System;
-
-namespace MiniGame2020
+﻿namespace MiniGame2020
 {
     public static class Program
     {
-        [STAThread]
         static void Main()
         {
-            using (var game = new Game1())
-                game.Run();
+            new MiniGame().Run();
         }
     }
 }

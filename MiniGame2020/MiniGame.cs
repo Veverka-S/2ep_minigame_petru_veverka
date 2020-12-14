@@ -4,15 +4,16 @@ using Microsoft.Xna.Framework.Input;
 
 namespace MiniGame2020
 {
-    public class Game1 : Game
+    public class MiniGame : Game
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
-        public Game1()
+        public MiniGame()
         {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            Window.Title = "Mini Game";
             IsMouseVisible = true;
         }
 
@@ -32,7 +33,7 @@ namespace MiniGame2020
 
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
             // TODO: Add your update logic here
@@ -42,9 +43,11 @@ namespace MiniGame2020
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.White);
 
+            _spriteBatch.Begin();
             // TODO: Add your drawing code here
+            _spriteBatch.End();
 
             base.Draw(gameTime);
         }
